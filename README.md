@@ -1,4 +1,4 @@
-# RISCV-SystemVerilog
+# RISCV Single-Cycle in System Verilog
 RISCV Single Cycle Processor Implementation in System Verilog
 
 ##  Project Goal
