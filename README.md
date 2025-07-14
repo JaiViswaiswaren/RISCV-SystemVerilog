@@ -76,6 +76,10 @@ The implementation covers all major instruction types in RV32I:
 * Byte-addressable memory for load/store
 
 ---
+## Credits
+* Avyakth Devarajan for helping me debugging the code.
+* Official documentation of RISC V.
+* Chatgpt for README and some help in the testbench code.
 
 ## 📃 License
 
