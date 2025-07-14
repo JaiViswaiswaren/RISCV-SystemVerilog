@@ -38,7 +38,7 @@ The implementation covers all major instruction types in RV32I:
 ### J-Type
 <img width="706" height="102" alt="Screenshot 2025-07-10 at 3 43 22 PM" src="https://github.com/user-attachments/assets/4110b923-705d-4284-b9a4-e92e8c64c97a" />
 
-## 🔧 Modules and Their Roles
+##  Modules and Their Roles
 
 
 | Module                  | Description                                                    |
