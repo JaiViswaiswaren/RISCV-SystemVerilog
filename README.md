@@ -1,7 +1,7 @@
 # RISCV-SystemVerilog
 RISCV Single Cycle Processor Implementation in System Verilog
 
-## 📌 Project Goal
+##  Project Goal
 
 To implement a minimal RV32I single-cycle processor that supports:
 
@@ -19,7 +19,7 @@ The processor uses:
 
 ---
 
-## ✅ Supported ISA and Instruction Formats
+##  Supported ISA and Instruction Formats
 
 The implementation covers all major instruction types in RV32I:
 
@@ -65,11 +65,11 @@ The implementation covers all major instruction types in RV32I:
 <img width="413" height="371" alt="Screenshot 2025-07-12 at 3 22 01 PM" src="https://github.com/user-attachments/assets/b1e69fb2-ff1a-4e4e-8083-7b73e31792b3" />
 
 ---
-## 🧪 Final Result
+##  Final Result
 <img width="993" height="377" alt="Screenshot 2025-07-14 at 6 14 17 PM" src="https://github.com/user-attachments/assets/a7da5cea-f6de-4da2-8ce4-384736fca078" />
 
 ---
-## ✅ Features
+##  Features
 
 * Fully synthesizable RTL
 * Modular and testbench-driven
