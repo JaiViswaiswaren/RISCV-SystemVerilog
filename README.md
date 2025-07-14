@@ -50,7 +50,7 @@ The implementation covers all major instruction types in RV32I:
 | `ALU_Control.sv`        | Decodes `funct3`, `funct7`, and `ALUOp` to generate `alu_ctrl` |
 | `ALU.sv`                | Executes arithmetic and logical operations                     |
 | `Data_Memory.sv`        | Byte-addressable memory for `lw` and `sw` operations           |
-<img width="771" height="446" alt="image" src="https://github.com/user-attachments/assets/ea851a86-9e9b-4804-9483-dfaf6104587a" />
+<img width="1604" height="912" alt="image" src="https://github.com/user-attachments/assets/e79cc70c-32bc-412c-84ca-3766dc330142" />
 
 
 ---
