@@ -81,7 +81,3 @@ The implementation covers all major instruction types in RV32I:
 ## 📃 License
 
 This project is open source and free to use for learning and research.
-
----
-
-Let me know if you'd like to include build badges, toolchain info, or link demo videos.
