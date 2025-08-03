@@ -43,22 +43,14 @@ The implementation covers all major instruction types in RV32I:
 
 
 ---
-## ALU Control and Opcode details
-<img width="216" height="497" alt="Screenshot 2025-07-11 at 3 32 54 PM" src="https://github.com/user-attachments/assets/635709dc-7f09-4756-be18-94e68828c216" />
-<img width="300" height="212" alt="Screenshot 2025-07-10 at 6 40 36 PM" src="https://github.com/user-attachments/assets/1e4ab960-18f9-4399-81d0-2f6cb5773a0b" />
 
----
 ## Sample Instruction Trace
 <img width="312" height="203" alt="Screenshot 2025-07-11 at 7 46 01 PM" src="https://github.com/user-attachments/assets/3844b66b-973d-4157-92e1-6db8acdd6224" />
 <img width="815" height="365" alt="Screenshot 2025-07-12 at 3 18 44 PM" src="https://github.com/user-attachments/assets/989e7e08-e729-42d5-b406-2e84b79f9817" />
 <img width="413" height="371" alt="Screenshot 2025-07-12 at 3 22 01 PM" src="https://github.com/user-attachments/assets/b1e69fb2-ff1a-4e4e-8083-7b73e31792b3" />
 
 ---
-##  Final Result
-<img width="993" height="377" alt="Screenshot 2025-07-14 at 6 14 17 PM" src="https://github.com/user-attachments/assets/a7da5cea-f6de-4da2-8ce4-384736fca078" />
 
-
----
 ## Credits
 * Avyakth Devarajan for helping me debugging the code.
 * Official documentation of RISC V.
