@@ -19,8 +19,6 @@ The processor uses:
 
 * 32 × 32-bit general-purpose registers
 * Instruction memory and data memory
-* A centralized control unit
-* Fully synchronous PC updates
 
 ---
 
