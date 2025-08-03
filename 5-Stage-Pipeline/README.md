@@ -35,6 +35,22 @@ Implements a 5-stage pipelined RV32I processor in SystemVerilog with hazard dete
 
 ---
 
+## ⏱️ Pipeline Timing
+
+| Cycle →    | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 | 11 | 12 | 13 | 14 |
+|------------|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| PC = 0     | IF | ID | EX | M  | WB |    |    |    |    |    |    |    |    |    |
+| PC = 4     |    | IF | ID | EX | M  | WB |    |    |    |    |    |    |    |    |
+| PC = 8     |    |    | IF | ID | EX |    |    |    |    |    |    |    |    |    |
+| PC = 12    |    |    |    | IF | ID | EX |    |    |    |    |    |    |    |    |
+| PC = 16    |    |    |    |    | IF | ID |    |    |    |    |    |    |    |    |
+| PC = 20    |    |    |    |    |    |    | IF | ID | EX | M  | WB |    |    |    |
+| PC = 24    |    |    |    |    |    |    |    | IF | ID | EX | M  | WB |    |    |
+| PC = 28    |    |    |    |    |    |    |    |    | IF | IF | ID | EX | M  | WB |
+
+
+---
+
 
 ##  Features
 
