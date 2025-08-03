@@ -1,14 +1,13 @@
 # RISCV Processor Implementation in System Verilog
 
-##  Project Goal
+## Project Goal
 
-To implement a minimal RV32I :
+To implement a minimal RV32I:
 
-[Single-Cycle Processor](https://github.com/JaiViswaiswaren/RISCV-SystemVerilog/tree/main/Single-Cycle) 
+[Single-Cycle Processor](https://github.com/JaiViswaiswaren/RISCV-SystemVerilog/tree/main/Single-Cycle)  
+[5-Stage Pipelined Processor](https://github.com/JaiViswaiswaren/RISCV-SystemVerilog/tree/main/5-Stage-Pipeline)
 
-[5-Stage Pipelined Processor](https://github.com/JaiViswaiswaren/RISCV-SystemVerilog/tree/main/5-Stage-Pipeline) 
-
-This processor that supports:
+This processor supports:
 
 * **ALU Operations**: `ADD`, `SUB`, `AND`, `OR`, `XOR`
 * **Immediate Operations**: `ADDI`, `ANDI`, `ORI`, `XORI`
@@ -17,40 +16,95 @@ This processor that supports:
 
 The processor uses:
 
-* 32 × 32-bit general-purpose registers
+* 32 × 32-bit general-purpose registers  
 * Instruction memory and data memory
 
 ---
 
-##  Supported ISA and Instruction Formats
-
-The implementation covers all major instruction types in RV32I:
+## Supported ISA and Instruction Formats
 
 ### R-Type
-<img width="642" height="249" alt="Screenshot 2025-07-10 at 3 41 07 PM" src="https://github.com/user-attachments/assets/78cffc17-d458-4d22-b9bc-ba2761fe7fd2" />
+
+| Instruction | funct7 [31:25] | rs2 [24:20] | rs1 [19:15] | funct3 [14:12] | rd [11:7] | opcode [6:0] | Type |
+|-------------|----------------|-------------|-------------|----------------|-----------|---------------|------|
+| add         | 0000000         | xxxxx       | xxxxx       | 000            | xxxxx     | 0110011        | R    |
+| sub         | 0100000         | xxxxx       | xxxxx       | 000            | xxxxx     | 0110011        | R    |
+| and         | 0000000         | xxxxx       | xxxxx       | 111            | xxxxx     | 0110011        | R    |
+| or          | 0000000         | xxxxx       | xxxxx       | 110            | xxxxx     | 0110011        | R    |
+| xor         | 0000000         | xxxxx       | xxxxx       | 100            | xxxxx     | 0110011        | R    |
 
 ### I-Type
-<img width="651" height="254" alt="Screenshot 2025-07-10 at 3 53 06 PM" src="https://github.com/user-attachments/assets/67190674-9eee-4643-8eee-d23dc98f67ee" />
+
+| Instruction | imm[11:0] [31:20] | rs1 [19:15] | funct3 [14:12] | rd [11:7] | opcode [6:0] | Type |
+|-------------|-------------------|-------------|----------------|-----------|---------------|------|
+| addi        | iiiiiiiiiiii       | xxxxx       | 000            | xxxxx     | 0010011        | I    |
+| andi        | iiiiiiiiiiii       | xxxxx       | 111            | xxxxx     | 0010011        | I    |
+| ori         | iiiiiiiiiiii       | xxxxx       | 110            | xxxxx     | 0010011        | I    |
+| xori        | iiiiiiiiiiii       | xxxxx       | 100            | xxxxx     | 0010011        | I    |
+| lw          | iiiiiiiiiiii       | xxxxx       | 010            | xxxxx     | 0000011        | I    |
 
 ### S-Type
-<img width="683" height="110" alt="Screenshot 2025-07-10 at 3 56 54 PM" src="https://github.com/user-attachments/assets/2b568169-9bb7-41ff-a65c-cea9c082dc56" />
+
+| Instruction | imm[11:5] [31:25] | rs2 [24:20] | rs1 [19:15] | funct3 [14:12] | imm[4:0] [11:7] | opcode [6:0] | Type |
+|-------------|-------------------|-------------|-------------|----------------|------------------|---------------|------|
+| sw          | iiiiiii            | xxxxx       | xxxxx       | 010            | iiiii            | 0100011        | S    |
 
 ### B-Type
-<img width="772" height="101" alt="Screenshot 2025-07-10 at 3 43 00 PM" src="https://github.com/user-attachments/assets/e6556205-2066-4074-86b9-aada5ca3c064" />
+
+| Instruction | imm[12] [31] | imm[10:5] [30:25] | rs2 [24:20] | rs1 [19:15] | funct3 [14:12] | imm[4:1] [11:8] | imm[11] [7] | opcode [6:0] | Type |
+|-------------|--------------|-------------------|-------------|-------------|----------------|------------------|--------------|---------------|------|
+| beq         | i            | iiiiii             | xxxxx       | xxxxx       | 000            | iiii             | i            | 1100011        | B    |
 
 ### J-Type
-<img width="706" height="102" alt="Screenshot 2025-07-10 at 3 43 22 PM" src="https://github.com/user-attachments/assets/4110b923-705d-4284-b9a4-e92e8c64c97a" />
 
+| Instruction | imm[20] [31] | imm[10:1] [30:21] | imm[11] [20] | imm[19:12] [19:12] | rd [11:7] | opcode [6:0] | Type |
+|-------------|---------------|-------------------|---------------|----------------------|-----------|---------------|------|
+| jal         | i             | iiiiiiiiii         | i             | iiiiiiii             | xxxxx     | 1101111        | J    |
 
 ---
 
 ## Sample Instruction Trace
-<img width="312" height="203" alt="Screenshot 2025-07-11 at 7 46 01 PM" src="https://github.com/user-attachments/assets/3844b66b-973d-4157-92e1-6db8acdd6224" />
-<img width="815" height="365" alt="Screenshot 2025-07-12 at 3 18 44 PM" src="https://github.com/user-attachments/assets/989e7e08-e729-42d5-b406-2e84b79f9817" />
-<img width="413" height="371" alt="Screenshot 2025-07-12 at 3 22 01 PM" src="https://github.com/user-attachments/assets/b1e69fb2-ff1a-4e4e-8083-7b73e31792b3" />
+
+### Register Initial Values
+
+| Register | Value |
+|----------|--------|
+| x0       | 0      |
+| x5       | 5      |
+| Others   | 0      |
+
+Memory `mem[0 to 31] = 0`
+
+### Execution Table
+
+| Address | Instruction     | Operation                      | Result / Effect                       | 32-bit Binary Instruction                     |
+|---------|------------------|--------------------------------|----------------------------------------|------------------------------------------------|
+| 0       | addi x1,x0,-3    | x1 = x0 + (-3)                 | x1 = -3                                | `0xFFD00893`                                   |
+| 4       | xor x4,x5,x1     | x4 = x5 ^ x1                   | x4 = 5 ^ -3 = -8                        | `0x012C233`                                    |
+| 8       | beq x1,x4,+8     | x1 != x4 → no branch           | skip next                              | `0x0120463`                                    |
+| 12      | jal x0,+8        | Jump +8                        | x0 = don't care, Jump to PC+8          | `0x0080006F`                                   |
+| 16      | addi x9,x9,100   | Skipped                        | No effect                              | `0x06448493`                                   |
+| 20      | sw x5,0(x0)      | mem[0] = x5                    | mem[0–3] = 0x05 (little-endian)        | `0x00502023`                                   |
+| 24      | lw x6,0(x0)      | x6 = mem[0]                    | x6 = 5                                 | `0x00002303`                                   |
+| 28      | add x7,x6,x1     | x7 = x6 + x1 = 5 + (-3) = 2    | x7 = 2                                 | `0x01303B3`                                    |
 
 ---
 
+## Final State
+
+| Register | Value      |
+|----------|------------|
+| x1       | -3         |
+| x4       | -8         |
+| x5       | 5          |
+| x6       | 5          |
+| x7       | 2          |
+| x9       | 0 (skipped) |
+
+### Memory:
+mem[0] to mem[3] = 0x00000005 (little endian)
+
+---
 ## Credits
 * Avyakth Devarajan for helping me debugging the code.
 * Official documentation of RISC V.
