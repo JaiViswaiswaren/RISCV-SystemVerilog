@@ -6,7 +6,7 @@ This is a minimal RV32I single-cycle processor implemented in SystemVerilog. Eve
 
 ##  Architecture
 
-<img width="1600" height="955" alt="image" src="https://github.com/user-attachments/assets/0df4985b-35c0-427a-853e-31a0507927f1" />
+![single-cycle-datapath](sing.svg)
 
 ---
 
