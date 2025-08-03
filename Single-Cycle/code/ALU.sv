@@ -18,7 +18,7 @@ assign b = alu_src ? imm32 : rd2;
   
     case(alu_ctrl)
       ADD:ALU_out32 = a+b;
-      SUB:ALU_out32 = a-b;
+      SUB:ALU_out32 = b-a;
       AND:ALU_out32 = a&b;
       OR :ALU_out32 = a|b;
       XOR:ALU_out32 = a^b;
