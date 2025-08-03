@@ -4,9 +4,8 @@ Implements a 5-stage pipelined RV32I processor in SystemVerilog with hazard dete
 
 ---
 
-## 🔧 Architecture
-
-<img width="2299" height="998" alt="image" src="https://github.com/user-attachments/assets/beb87d1f-f2ae-47ed-94a7-439a39fa1b54" />
+## Architecture
+![abcxyz](ppelin.svg)
 
 ---
 
